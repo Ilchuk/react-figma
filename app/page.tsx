@@ -1,65 +1,69 @@
-import Image from "next/image";
+import Header from "@/components/Header";
+import CategoryTiles from "@/components/CategoryTiles";
+import HorizontalFilters from "@/components/HorizontalFilters";
+import ProductGrid from "@/components/ProductGrid";
+import Pagination from "@/components/Pagination";
+import Footer from "@/components/Footer";
 
-export default function Home() {
+function HomeIcon() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="#222" />
+    </svg>
+  );
+}
+function ChevronRight() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#222" />
+    </svg>
+  );
+}
+
+export default function ProductListingPage() {
+  return (
+    <div className="bg-[#f9f9f9] flex flex-col w-full min-h-screen">
+      <Header />
+
+      {/* Page header */}
+      <section className="bg-[#f9f9f9] flex flex-col gap-0 items-center px-4 sm:px-8 lg:px-[80px] py-6 lg:py-10 w-full">
+        <div className="flex flex-col gap-3 lg:gap-4 items-start max-w-[1224px] w-full">
+
+          {/* Breadcrumbs */}
+          <nav className="flex items-center text-[10px] text-[#222] flex-wrap" aria-label="Breadcrumb">
+            {/* Mobile: truncated — Home > ... > Sub-Category */}
+            <span className="flex items-center sm:hidden gap-0">
+              <HomeIcon />
+              <ChevronRight />
+              <span>…</span>
+              <ChevronRight />
+              <span>Sub-Category</span>
+              <ChevronRight />
+            </span>
+            {/* Tablet+: full breadcrumb */}
+            <span className="hidden sm:flex items-center gap-0">
+              <HomeIcon />
+              <ChevronRight />
+              <span>Category</span>
+              <ChevronRight />
+              <span>Sub-Category</span>
+              <ChevronRight />
+              <span>Sub-Category</span>
+              <ChevronRight />
+            </span>
+          </nav>
+
+          <h1 className="font-bold text-[28px] sm:text-[32px] lg:text-[39px] text-[#222] leading-tight w-full">
+            Page Heading
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
+
+      <CategoryTiles />
+      <HorizontalFilters />
+      <ProductGrid />
+      <Pagination />
+      <Footer />
     </div>
   );
 }
