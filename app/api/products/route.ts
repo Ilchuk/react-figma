@@ -54,7 +54,7 @@ export async function GET() {
         query,
         variables: {
           currentPage: 1,
-          pageSize: 15,
+          pageSize: 25,
           categoryId: "1701",
         },
       }),

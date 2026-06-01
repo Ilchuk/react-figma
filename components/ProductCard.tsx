@@ -36,6 +36,8 @@ export default function ProductCard({
     const price = product.price_range?.minimum_price?.final_price?.value;
     const currency = product.price_range?.minimum_price?.final_price?.currency;
     const formattedPrice = price?.toFixed(2) ?? "0.00";
+
+    console.log("ProductCard rendered for:", product);
   
      return (
 
@@ -52,8 +54,8 @@ export default function ProductCard({
           <p className="text-[13px] text-[#222] leading-5 line-clamp-3">{product.name}</p>
           <div className="flex items-baseline gap-0.5">
             <sup className="text-[12px] font-bold text-[#222] leading-none">$</sup>
-            <span className="text-[24px] font-bold text-[#222] leading-none">{formattedPrice.split(".")[0]}</span>
-            <sup className="text-[12px] font-bold text-[#222] leading-none">.{formattedPrice.split(".")[0]}</sup>
+            <span className="text-[24px] font-bold text-[#222] leading-none">{price}</span>
+  
           </div>
           <button className="bg-[#444] flex gap-1.5 h-[36px] items-center justify-center px-4 rounded-full w-full hover:bg-[#222] transition-colors">
             <CartIconSmall />
@@ -80,8 +82,8 @@ export default function ProductCard({
           <p className="text-[14px] text-[#222] leading-5 min-h-[60px] line-clamp-3">{product.name}</p>
           <div className="flex items-baseline gap-0.5">
             <sup className="text-[14px] font-bold text-[#222] leading-none">$</sup>
-            <span className="text-[28px] font-bold text-[#222] leading-none">{formattedPrice.split(".")[0]}</span>
-            <sup className="text-[14px] font-bold text-[#222] leading-none">.{formattedPrice.split(".")[0]}</sup>
+            <span className="text-[28px] font-bold text-[#222] leading-none">{price}</span>
+       
           </div>
           <button className="bg-[#444] flex gap-1.5 h-[40px] items-center justify-center px-6 rounded-full w-full hover:bg-[#222] transition-colors">
             <CartIconSmall />
