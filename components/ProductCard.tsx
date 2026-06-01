@@ -1,3 +1,6 @@
+import type {Product} from "./types/product";
+
+
 function CartIconSmall() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -24,15 +27,18 @@ function StockItem({ label }: { label: string }) {
 }
 
 interface ProductCardProps {
-  name?: string;
-  price?: string;
+  product: Product;
 }
 
 export default function ProductCard({
-  name = "This Is A Product With A Very Long Product Name",
-  price = "0,000",
+  product,
 }: ProductCardProps) {
-  return (
+    const price = product.price_range?.minimum_price?.final_price?.value;
+    const currency = product.price_range?.minimum_price?.final_price?.currency;
+    const formattedPrice = price?.toFixed(2) ?? "0.00";
+  
+     return (
+
     <div className="bg-white rounded-xl overflow-hidden w-full">
 
       {/* ── MOBILE LAYOUT: horizontal (image left, details right) ── */}
@@ -43,11 +49,11 @@ export default function ProductCard({
         </div>
         {/* Details */}
         <div className="flex flex-col gap-3 py-4 pr-4 flex-1 min-w-0">
-          <p className="text-[13px] text-[#222] leading-5 line-clamp-3">{name}</p>
+          <p className="text-[13px] text-[#222] leading-5 line-clamp-3">{product.name}</p>
           <div className="flex items-baseline gap-0.5">
             <sup className="text-[12px] font-bold text-[#222] leading-none">$</sup>
-            <span className="text-[24px] font-bold text-[#222] leading-none">{price.split(".")[0]}</span>
-            <sup className="text-[12px] font-bold text-[#222] leading-none">.{price.split(".")[1] ?? "00"}</sup>
+            <span className="text-[24px] font-bold text-[#222] leading-none">{formattedPrice.split(".")[0]}</span>
+            <sup className="text-[12px] font-bold text-[#222] leading-none">.{formattedPrice.split(".")[0]}</sup>
           </div>
           <button className="bg-[#444] flex gap-1.5 h-[36px] items-center justify-center px-4 rounded-full w-full hover:bg-[#222] transition-colors">
             <CartIconSmall />
@@ -71,11 +77,11 @@ export default function ProductCard({
         </div>
         {/* Details */}
         <div className="flex flex-col gap-3 pb-6 px-4 w-full flex-1">
-          <p className="text-[14px] text-[#222] leading-5 min-h-[60px] line-clamp-3">{name}</p>
+          <p className="text-[14px] text-[#222] leading-5 min-h-[60px] line-clamp-3">{product.name}</p>
           <div className="flex items-baseline gap-0.5">
             <sup className="text-[14px] font-bold text-[#222] leading-none">$</sup>
-            <span className="text-[28px] font-bold text-[#222] leading-none">{price.split(".")[0]}</span>
-            <sup className="text-[14px] font-bold text-[#222] leading-none">.{price.split(".")[1] ?? "00"}</sup>
+            <span className="text-[28px] font-bold text-[#222] leading-none">{formattedPrice.split(".")[0]}</span>
+            <sup className="text-[14px] font-bold text-[#222] leading-none">.{formattedPrice.split(".")[0]}</sup>
           </div>
           <button className="bg-[#444] flex gap-1.5 h-[40px] items-center justify-center px-6 rounded-full w-full hover:bg-[#222] transition-colors">
             <CartIconSmall />
